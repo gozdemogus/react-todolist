@@ -1,4 +1,5 @@
 import React, { createContext, useState, useContext } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 
 const TodoContext = createContext();
 
@@ -15,9 +16,12 @@ export const TodoProvider = ({ children }) => {
     }
     ])
 
+    const addTodo = (text) => setTodos((prev) => [...prev, { id: uuidv4(), completed: false, text: text }])
+
     const values = {
         todos,
         setTodos,
+        addTodo
     }
 
     return <TodoContext.Provider value={values}>{children} </TodoContext.Provider>
@@ -25,10 +29,10 @@ export const TodoProvider = ({ children }) => {
 
 //contexti doğrudan kullanabilmek icin özellestirilmis hooks yazıyoruz.
 export const useTodo = () => {
-const context = useContext(TodoContext);
+    const context = useContext(TodoContext);
 
-if(context === undefined) {
-    throw new Error("useTodo hook must be call inside TodoProvider component");
-}
-return context;
+    if (context === undefined) {
+        throw new Error("useTodo hook must be call inside TodoProvider component");
+    }
+    return context;
 }
