@@ -1,5 +1,5 @@
 import React from 'react'
-import ComponentFooter from '../ComponentFooter'
+import ContentFooter from '../ContentFooter'
 import List from './List'
 
 function Content() {
@@ -13,7 +13,7 @@ function Content() {
 
                <List></List>
             </section>
-            <ComponentFooter></ComponentFooter>
+            <ContentFooter></ContentFooter>
         </>
 
     )
